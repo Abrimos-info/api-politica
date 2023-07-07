@@ -58,7 +58,7 @@ class Catalogues:
     OTHER_NAMES_TYPES = ['', 'preferred', 'nickname', 'ballot_name']
     URL_OWNER_TYPE_NAMES = ['', 'PERSON', 'PARTY', 'COALITION', 'MEMBERSHIP']
     #   GOBERNADOR, DIPUTADO , PRESIDENTE MUNICIPAL, SENADOR NACIONAL, DIPUADO LOCAL
-    ROLE_TYPES = ['', 'governmentOfficer', 'legislatorLowerBody', 'executiveCouncil', 'legislatorUpperBody', 'regionalLegislator']
+    ROLE_TYPES = ['', 'governmentOfficer', 'legislatorLowerBody', 'executiveCouncil', 'legislatorUpperBody', 'regionalLegislator', 'deputyHeadOfGovernment']
     URL_TYPE_NAMES = ['',
                       'campaign', 'official', 'personal', 'wikipedia',
                       'campaign', 'official', 'personal',
