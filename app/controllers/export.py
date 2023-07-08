@@ -34,7 +34,7 @@ class ExportMin(Resource):
     @export_min_ns.doc('Get all information')
     def get(self):
         if INTERNAL_TOKEN.compare(request.headers.get('Authorization')):
-            try:
+            # try:
                 if isOnDev:
                     obj = {
                         'areas': AreaModel.find_all(),
@@ -53,10 +53,10 @@ class ExportMin(Resource):
                     f.close()
                     response = jsonify(data_json)
                     response.status_code = HttpStatus.OK
-            except Exception as e:
-                response = jsonify({'message': e.__str__()})
-                response.status_code = HttpStatus.INTERNAL_ERROR
-            return response
+            # except Exception as e:
+            #     response = jsonify({'message': e.__str__()})
+            #     response.status_code = HttpStatus.INTERNAL_ERROR
+                return response
         else:
             response = jsonify({'message': 'Unauthorized'})
             response.status_code = HttpStatus.UNAUTHORIZED
