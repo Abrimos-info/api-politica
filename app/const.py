@@ -54,14 +54,18 @@ class Catalogues:
                           'UNIVERSITY 1ST PROFESSIONAL DEGREE',
                           'MASTER DEGREE', 'PHD DEGREE', 'BACHELOR\'S DEGREE']
     #   GOBERNADOR, DIPUTADO , PRESIDENTE MUNICIPAL
-    DISTRICT_TYPES = ['NATIONAL_EXEC', 'REGIONAL_EXEC', 'NATIONAL_LOWER', 'LOCAL_EXEC', 'NATIONAL_UPPER']
+    DISTRICT_TYPES = ['NATIONAL_EXEC', 'REGIONAL_EXEC', 'NATIONAL_LOWER', 'LOCAL_EXEC', 'NATIONAL_UPPER', 'NATIONAL_VICE_EXEC', 'REGIONAL_VICE_EXECUTIVE']
     GENDERS = ['', 'M', 'F']
     MEMBERSHIP_TYPES = ['', 'officeholder', 'campaigning_politician', 'party_leader']
     # privilegiado, apodo, nombre de la boleta
     OTHER_NAMES_TYPES = ['', 'preferred', 'nickname', 'ballot_name']
     URL_OWNER_TYPE_NAMES = ['', 'PERSON', 'PARTY', 'COALITION', 'MEMBERSHIP']
+
     #   GOBERNADOR, DIPUTADO , PRESIDENTE MUNICIPAL
-    ROLE_TYPES = ['', 'governmentOfficer', 'legislatorLowerBody', 'executiveCouncil', 'legislatorUpperBody']
+    # Source: https://developers.google.com/civic-information/docs/v2/representatives#elected-offices
+    ROLE_TYPES = ['', 'governmentOfficer', 'legislatorLowerBody',
+                  'executiveCouncil', 'legislatorUpperBody', 
+                  'regionalLegislator', 'deputyHeadOfGovernment', 'viceGovernmentOfficer', 'headOfGovernment']
     URL_TYPE_NAMES = ['',
                       'campaign', 'official', 'personal', 'wikipedia',
                       'campaign', 'official', 'personal',
