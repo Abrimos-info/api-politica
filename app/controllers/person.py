@@ -2,6 +2,7 @@ from flask import request, jsonify
 from flask_restx import Resource, fields
 from datetime import datetime
 import json
+from app import db
 
 from app import api, isOnDev, project_dir, INTERNAL_TOKEN
 from app.models.person import PersonModel as TheModel
@@ -64,7 +65,9 @@ class PersonList(Resource):
                 return response
             try:
                 element_json = request.get_json()
-                element_data = local_schema.load(element_json)
+                print(element_json)
+                element_data = local_schema.load(element_json, session=db.session)
+                print(element_data.json())
                 element_data.save()
                 response = jsonify(element_data.json())
                 response.status_code = HttpStatus.CREATED

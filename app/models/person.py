@@ -23,7 +23,7 @@ class PersonModel(db.Model):
     #contest_id = db.Column(db.Integer, db.ForeignKey('contest.contest_id'), nullable=True)
     contest_id = db.Column(db.Integer, nullable=True)
 
-    def __init__(self, first_name, last_name, full_name, date_birth, gender, dead_or_alive, last_degree_of_studies, contest_id):
+    def __init__(self, person_id, first_name, last_name, full_name, date_birth, gender, dead_or_alive, last_degree_of_studies, contest_id):
         self.first_name = first_name
         self.last_name = last_name
         self.full_name = full_name
@@ -32,6 +32,7 @@ class PersonModel(db.Model):
         self.dead_or_alive = dead_or_alive
         self.last_degree_of_studies = last_degree_of_studies
         self.contest_id = contest_id
+        self.person_id = person_id
 
     def json(self):
         #   Getting other_names
@@ -135,6 +136,7 @@ class PersonModel(db.Model):
         return result
 
     def save(self):
+        print(self.json());
         db.session.add(self)
         db.session.commit()
 
