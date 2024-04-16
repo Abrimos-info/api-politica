@@ -23,7 +23,7 @@ model_validator = local_ns.model(CURRENT_NAME, {
     'abbreviation': fields.String,
     'colors': fields.List(fields.String),
     'area_id': fields.Integer,
-    'coalition_id': fields.Integer
+    'coalition_id': fields.Integer(nullable=True, required=False)
 })
 
 @local_ns.route('/')
