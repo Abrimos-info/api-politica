@@ -68,7 +68,7 @@ class MembershipModel(db.Model):
             'date_changed_from_substitute': "" if self.date_changed_from_substitute.strftime(
                 '%Y-%m-%d') == date.fromisoformat(EmptyValues.EMPTY_DATE).strftime(
                 '%Y-%m-%d') else self.date_changed_from_substitute.strftime('%Y-%m-%d'),
-            'source_urls': UrlModel.get_membership_source_urls(self.membership_id)
+            'source_urls': UrlModel.get_membership_source_urls(self.person_id)
         }
         return obj
 

@@ -13,16 +13,16 @@ class AreaModel(db.Model):
     city = db.Column(db.String(3000))
     district_type = db.Column(db.Integer, nullable=False)
     #parent_area_id = db.Column(db.Integer, db.ForeignKey('area.area_id'), nullable=True)
-    parent_area_id = db.Column(db.Integer, nullable=True)
+    # parent_area_id = db.Column(db.Integer, nullable=True)
 
-    def __init__(self, ocd_id, name, country, state, city, district_type, parent_area_id):
+    def __init__(self, ocd_id, name, country, state, city, district_type): # , parent_area_id):
         self.ocd_id = ocd_id
         self.name = name
         self.country = country
         self.state = state
         self.city = city
         self.district_type = district_type
-        self.parent_area_id = parent_area_id
+        # self.parent_area_id = parent_area_id
 
     def json(self):
         obj = {
@@ -36,7 +36,7 @@ class AreaModel(db.Model):
             'state': self.state,
             'city': self.city,
             'district_type': Catalogues.DISTRICT_TYPES[self.district_type],
-            'parent_area_id': "" if self.parent_area_id == EmptyValues.EMPTY_INT else self.parent_area_id
+            # 'parent_area_id': "" if self.parent_area_id == EmptyValues.EMPTY_INT else self.parent_area_id
         }
         return obj
 

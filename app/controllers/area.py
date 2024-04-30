@@ -25,7 +25,7 @@ model_validator = local_ns.model(CURRENT_NAME, {
     'state': fields.String,
     'city': fields.String,
     'district_type': fields.Integer,
-    'parent_area_id': fields.Integer
+    # 'parent_area_id': fields.Integer
 })
 
 
@@ -122,7 +122,7 @@ class Area(Resource):
                     element_data.state = EmptyValues.EMPTY_STRING if request.json['state'] == EmptyValues.EMPTY_STRING else request.json['state']
                     element_data.city = EmptyValues.EMPTY_STRING if request.json['city'] == EmptyValues.EMPTY_STRING else request.json['city']
                     element_data.district_type = EmptyValues.EMPTY_INT if request.json['district_type'] == EmptyValues.EMPTY_STRING else request.json['district_type']
-                    element_data.parent_area_id = EmptyValues.EMPTY_INT if request.json['parent_area_id'] == EmptyValues.EMPTY_STRING else request.json['parent_area_id']
+                    # element_data.parent_area_id = EmptyValues.EMPTY_INT if request.json['parent_area_id'] == EmptyValues.EMPTY_STRING else request.json['parent_area_id']
                     element_data.save()
                     response = jsonify(element_data.json())
                     response.status_code = HttpStatus.CREATED
