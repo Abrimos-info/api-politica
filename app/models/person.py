@@ -22,8 +22,9 @@ class PersonModel(db.Model):
     last_degree_of_studies = db.Column(db.Integer) #last_degree_of_studies_id
     #contest_id = db.Column(db.Integer, db.ForeignKey('contest.contest_id'), nullable=True)
     contest_id = db.Column(db.Integer, nullable=True)
+    profession_1 = db.Column(db.String(1000), nullable=True)
 
-    def __init__(self, person_id, first_name, last_name, full_name, date_birth, gender, dead_or_alive, last_degree_of_studies, contest_id):
+    def __init__(self, person_id, first_name, last_name, full_name, date_birth, gender, dead_or_alive, last_degree_of_studies, contest_id, profession_1):
         self.first_name = first_name
         self.last_name = last_name
         self.full_name = full_name
@@ -33,6 +34,7 @@ class PersonModel(db.Model):
         self.last_degree_of_studies = last_degree_of_studies
         self.contest_id = contest_id
         self.person_id = person_id
+        self.profession_1 = profession_1
 
     def json(self):
         #   Getting other_names
@@ -108,6 +110,7 @@ class PersonModel(db.Model):
             'contest_id': "" if self.contest_id == EmptyValues.EMPTY_INT else self.contest_id,
             'other_names': other_names,
             'professions': professions_val,
+            'profession_1': self.profession_1,
             'fb_urls': UrlModel.get_person_fb_urls(self.person_id),
             'ig_urls': UrlModel.get_person_ig_urls(self.person_id),
             'websites': UrlModel.get_party_or_coalition_or_person_websites_urls(self.person_id, URL_OWNER_TYPE.PERSON),
@@ -136,7 +139,7 @@ class PersonModel(db.Model):
         return result
 
     def save(self):
-        print(self.json());
+        # print(self.json());
         db.session.add(self)
         db.session.commit()
 

@@ -28,7 +28,8 @@ model_validator = local_ns.model(CURRENT_NAME, {
     'gender': fields.Integer,
     'dead_or_alive': fields.Boolean,
     'last_degree_of_studies': fields.Integer,
-    'contest_id': fields.Integer
+    'contest_id': fields.Integer,
+    'profession_1': fields.String,
 })
 
 @local_ns.route('/')
@@ -129,6 +130,7 @@ class Person(Resource):
                     element_data.dead_or_alive = EmptyValues.EMPTY_INT if request.json['dead_or_alive'] == EmptyValues.EMPTY_STRING else request.json['dead_or_alive']
                     element_data.last_degree_of_studies = EmptyValues.EMPTY_INT if request.json['last_degree_of_studies'] == EmptyValues.EMPTY_STRING else request.json['last_degree_of_studies']
                     element_data.contest_id = EmptyValues.EMPTY_INT if request.json['contest_id'] == EmptyValues.EMPTY_STRING else request.json['contest_id']
+                    element_data.profession_1 = EmptyValues.EMPTY_STRING if request.json['profession_1'] == EmptyValues.EMPTY_STRING else request.json['profession_1']
                     element_data.save()
                     response = jsonify(element_data.json())
                     response.status_code = HttpStatus.CREATED
