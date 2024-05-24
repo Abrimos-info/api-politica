@@ -32,6 +32,7 @@ export_min_ns = api.namespace('export-min', description='Get minimum necessary i
 export_min_officeholders_ns = api.namespace('export-min-officeholders', description='Get minimum necessary information from officeholders')
 export_officeholders_ns = api.namespace('export-officeholders', description='Get all information from officeholders')
 
+
 @export_min_ns.route('/')
 class ExportMin(Resource):
     @export_min_ns.doc('Get minimum necessary information')
@@ -43,7 +44,7 @@ class ExportMin(Resource):
                         'areas': AreaModel.find_all(),
                         'chambers': ChamberModel.find_all(),
                         'roles': RoleModel.find_all(),
-                        'persons': PersonModel.find_all(),
+                        'persons': PersonModel.find_min(),
                         'parties': PartyModel.find_all(),
                         'memberships': MembershipModel.find_all(),
                         'contests': ContestModel.find_all()

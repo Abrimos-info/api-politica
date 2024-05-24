@@ -30,6 +30,7 @@ model_validator = local_ns.model(CURRENT_NAME, {
     'last_degree_of_studies': fields.Integer,
     'contest_id': fields.Integer,
     'profession_1': fields.String,
+    'replaced_person_id': fields.Integer
 })
 
 @local_ns.route('/')
@@ -131,6 +132,7 @@ class Person(Resource):
                     element_data.last_degree_of_studies = EmptyValues.EMPTY_INT if request.json['last_degree_of_studies'] == EmptyValues.EMPTY_STRING else request.json['last_degree_of_studies']
                     element_data.contest_id = EmptyValues.EMPTY_INT if request.json['contest_id'] == EmptyValues.EMPTY_STRING else request.json['contest_id']
                     element_data.profession_1 = EmptyValues.EMPTY_STRING if request.json['profession_1'] == EmptyValues.EMPTY_STRING else request.json['profession_1']
+                    element_data.replaced_person_id = EmptyValues.EMPTY_INT if request.json['replaced_person_id'] == EmptyValues.EMPTY_STRING else request.json['replaced_person_id']
                     element_data.save()
                     response = jsonify(element_data.json())
                     response.status_code = HttpStatus.CREATED
