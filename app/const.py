@@ -52,7 +52,7 @@ class Catalogues:
     DEGREES_OF_STUDIES = ['', 'ELEMENTARY', 'HIGH SCHOOL', 'ASSOCIATE DEGREE', 'BACHELOR’S DEGREE', 'UNIVERSITY 1 ST PROFESSIONAL DEGREE', 'MASTER DEGREE', 'PHD DEGREE']
     #   PRESIDENTE NACIONAL, GOBERNADOR, DIPUTADO , PRESIDENTE MUNICIPAL, SENADOR NACIONAL, DIPUTACIONES LOCALES
     DISTRICT_TYPES = ['NATIONAL_EXEC', 'REGIONAL_EXEC', 'NATIONAL_LOWER', 'LOCAL_EXEC', 'NATIONAL_UPPER', 'REGIONAL_LEGISLATIVE']
-    GENDERS = ['', 'M', 'F']
+    GENDERS = ['', 'M', 'F', 'NB']
     MEMBERSHIP_TYPES = ['', 'officeholder', 'campaigning_politician', 'party_leader', 'officeholder_substitute']
     # privilegiado, apodo, nombre de la boleta
     OTHER_NAMES_TYPES = ['', 'preferred', 'nickname', 'ballot_name']
