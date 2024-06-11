@@ -25,8 +25,9 @@ class PersonModel(db.Model):
     profession_1 = db.Column(db.String(1000), nullable=True)
     modified_date = db.Column(db.Date)
     replaced_person_id = db.Column(db.Integer, nullable=True)
+    is_elected_2024 = db.Column(db.Boolean, nullable=True)
 
-    def __init__(self, person_id, first_name, last_name, full_name, date_birth, gender, dead_or_alive, last_degree_of_studies, contest_id, profession_1, replaced_person_id):
+    def __init__(self, person_id, first_name, last_name, full_name, date_birth, gender, dead_or_alive, last_degree_of_studies, contest_id, profession_1, replaced_person_id, is_elected_2024):
         self.first_name = first_name
         self.last_name = last_name
         self.full_name = full_name
@@ -39,6 +40,7 @@ class PersonModel(db.Model):
         self.profession_1 = profession_1
         self.modified_date = date.today()
         self.replaced_person_id = replaced_person_id
+        self.is_elected_2024 = is_elected_2024
 
     def json_min(self):
         return self.json(True)
@@ -127,7 +129,8 @@ class PersonModel(db.Model):
         if (min == False):
             extra = {
                 'profession_1': self.profession_1,
-                'replaced_person_id': self.replaced_person_id
+                'replaced_person_id': self.replaced_person_id,
+                'is_elected_2024': self.is_elected_2024
             }
             obj.update(extra);
 
