@@ -16,7 +16,7 @@ class AreaModel(db.Model):
     parent_area_id = db.Column(db.String, nullable=True)
     cvedis = db.Column(db.String, nullable=True)
 
-    def __init__(self, ocd_id, name, country, state, city, district_type, parent_area_id, cvedis):
+    def __init__(self, ocd_id, name, country, state, city, district_type, parent_area_id, cvedis=None):
         self.ocd_id = ocd_id
         self.name = name
         self.country = country

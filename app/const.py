@@ -58,7 +58,8 @@ class Catalogues:
     OTHER_NAMES_TYPES = ['', 'preferred', 'nickname', 'ballot_name']
     URL_OWNER_TYPE_NAMES = ['', 'PERSON', 'PARTY', 'COALITION', 'MEMBERSHIP']
     #   GOBERNADOR, DIPUTADO , PRESIDENTE MUNICIPAL, SENADOR NACIONAL, DIPUADO LOCAL
-    ROLE_TYPES = ['', 'governmentOfficer', 'legislatorLowerBody', 'executiveCouncil', 'legislatorUpperBody', 'regionalLegislator', 'deputyHeadOfGovernment']
+
+    ROLE_TYPES = ['', 'governmentOfficer', 'legislatorLowerBody', 'executiveCouncil', 'legislatorUpperBody', 'regionalLegislator', 'deputyHeadOfGovernment', 'headOfGovernment']
     URL_TYPE_NAMES = ['',
                       'campaign', 'official', 'personal', 'wikipedia',
                       'campaign', 'official', 'personal',
@@ -72,3 +73,13 @@ class Catalogues:
                            'WhatsApp', 'Twitter', 'YouTube', 'LinkedIn', 'Flickr', 'Pinterest', 'Tumblr', 'RSS',
                            'Email', 'Photo', 'Logo', 'source_of_truth'
                       ]
+
+    # Closed list from: https://developers.google.com/civic-information/docs/v2/representatives?hl=es-419#elected-offices
+
+    # headOfState -- El principal representante público de un Gobierno. Por lo general, el jefe de estado de un país se denomina presidente.
+    # headOfGovernment: El director ejecutivo de un Gobierno. En los EE. UU., es el presidente; en otros países, suele ser el primer ministro. En los niveles inferiores, podría ser gobernador o alcalde.
+    # deputyHeadOfGovernment: Funcionario responsable de asumir la función de jefe de Gobierno en caso de muerte o incapacidad del jefe de Gobierno electo En EE.UU., es el vicepresidente. Esta oficina también puede tener otras funciones.
+    # governmentOfficer: Funcionario electo de la rama ejecutiva. En los estados de EE.UU., esto puede incluir cargos como procurador general, controlador, secretario, estado o tesorero.
+    # executiveCouncil: Es un miembro de un consejo ejecutivo que cumple las funciones de rama ejecutiva como grupo. Algunos ejemplos son los comisionados del condado de Indiana.
+    # legislatorUpperBody: Miembro del cuerpo superior de una legislatura bicámara o único órgano de una legislatura unicámara.
+    # legislatorLowerBody: Miembro del cuerpo inferior de una legislatura bicámara.
