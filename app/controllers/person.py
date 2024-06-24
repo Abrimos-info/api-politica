@@ -21,6 +21,7 @@ local_schema = TheSchema()
 
 #   Model required by flask_restx for expect on POST and PUT methods
 model_validator = local_ns.model(CURRENT_NAME, {
+    'country': fields.String,
     'first_name': fields.String,
     'last_name': fields.String,
     'full_name': fields.String,
@@ -122,6 +123,7 @@ class Person(Resource):
                 element_data = TheModel.find_by_id(id)
 
                 if element_data:
+                    element_data.country = EmptyValues.EMPTY_STRING if request.json['country'] == EmptyValues.EMPTY_STRING else request.json['country']
                     element_data.first_name = EmptyValues.EMPTY_STRING if request.json['first_name'] == EmptyValues.EMPTY_STRING else request.json['first_name']
                     element_data.last_name = EmptyValues.EMPTY_STRING if request.json['last_name'] == EmptyValues.EMPTY_STRING else request.json['last_name']
                     element_data.full_name = EmptyValues.EMPTY_STRING if request.json['full_name'] == EmptyValues.EMPTY_STRING else request.json['full_name']

@@ -13,6 +13,7 @@ class PersonModel(db.Model):
     __table_args__ = {'sqlite_autoincrement': True}
 
     person_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
+    country = db.Column(db.String(50), nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     full_name = db.Column(db.String(100), nullable=False)
@@ -26,7 +27,7 @@ class PersonModel(db.Model):
     modified_date = db.Column(db.Date)
     replaced_person_id = db.Column(db.Integer, nullable=True)
 
-    def __init__(self, person_id, first_name, last_name, full_name, date_birth, gender, dead_or_alive, last_degree_of_studies, contest_id, profession_1, replaced_person_id):
+    def __init__(self, person_id, country, first_name, last_name, full_name, date_birth, gender, dead_or_alive, last_degree_of_studies, contest_id, profession_1, replaced_person_id):
         self.first_name = first_name
         self.last_name = last_name
         self.full_name = full_name
@@ -39,6 +40,7 @@ class PersonModel(db.Model):
         self.profession_1 = profession_1
         self.modified_date = date.today()
         self.replaced_person_id = replaced_person_id
+        self.country = country
 
     def json_min(self):
         return self.json(True)
@@ -96,6 +98,7 @@ class PersonModel(db.Model):
 
         obj = {
             'id': self.person_id,
+            'country': self.country,
             'first_name': {
                 'en_US': self.first_name,
                 'es_MX': self.first_name
