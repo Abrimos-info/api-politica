@@ -19,6 +19,7 @@ local_schema = TheSchema()
 
 #   Model required by flask_restx for expect on POST and PUT methods
 model_validator = local_ns.model(CURRENT_NAME, {
+    'party_id': fields.Integer,
     'name': fields.String,
     'abbreviation': fields.String,
     'colors': fields.List(fields.String),
@@ -58,15 +59,18 @@ class PartyList(Resource):
                 response = jsonify({'message': 'Not allowed'})
                 response.status_code = HttpStatus.NOT_ALLOWED
                 return response
-            try:
-                element_json = request.get_json()
-                element_data = local_schema.load(element_json)
-                element_data.save()
-                response = jsonify(element_data.json())
-                response.status_code = HttpStatus.CREATED
-            except Exception as e:
-                response = jsonify({'message': e.__str__()})
-                response.status_code = HttpStatus.BAD_REQUEST
+            # try:
+            element_json = request.get_json()
+            # print(element_json);
+            # del element_json["party_id"]
+            # print(element_json);
+            element_data = local_schema.load(element_json)
+            element_data.save()
+            response = jsonify(element_data.json())
+            response.status_code = HttpStatus.CREATED
+            # except Exception as e:
+            #     response = jsonify({'message': "party post exception: "+e.__str__()})
+            #     response.status_code = HttpStatus.BAD_REQUEST
             return response
         else:
             response = jsonify({'message': 'Unauthorized'})
