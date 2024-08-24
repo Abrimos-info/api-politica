@@ -26,8 +26,9 @@ class PersonModel(db.Model):
     profession_1 = db.Column(db.String(1000), nullable=True)
     modified_date = db.Column(db.Date)
     replaced_person_id = db.Column(db.Integer, nullable=True)
+    country = db.Column(db.String(2))
 
-    def __init__(self, person_id, country, first_name, last_name, full_name, date_birth, gender, dead_or_alive, last_degree_of_studies, contest_id, profession_1, replaced_person_id):
+    def __init__(self, person_id, first_name, last_name, full_name, date_birth, gender, dead_or_alive, last_degree_of_studies, contest_id, profession_1, replaced_person_id=None, country=""):
         self.first_name = first_name
         self.last_name = last_name
         self.full_name = full_name
@@ -125,12 +126,13 @@ class PersonModel(db.Model):
             'websites': UrlModel.get_party_or_coalition_or_person_websites_urls(self.person_id, URL_OWNER_TYPE.PERSON),
             'photo_urls': UrlModel.get_person_photo_urls(self.person_id),
             'social_network_accounts': UrlModel.get_person_social_networks_urls(self.person_id),
-            'modified_date': self.modified_date.isoformat(),
+            'modified_date': self.modified_date.isoformat()
         }
         if (min == False):
             extra = {
                 'profession_1': self.profession_1,
-                'replaced_person_id': self.replaced_person_id
+                'replaced_person_id': self.replaced_person_id,
+                'country': self.country
             }
             obj.update(extra);
 
