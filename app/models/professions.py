@@ -6,13 +6,16 @@ class ProfessionModel(db.Model):
 
     profession_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
     description = db.Column(db.String(100), nullable=False)
+    country = db.Column(db.String(2))
 
-    def __init__(self, description):
+    def __init__(self, description, country=""):
         self.description = description
+        self.country = country
 
     def json(self):
         obj = {
             'id': self.profession_id,
+            'country': self.country,
             'description': self.description
         }
         return obj

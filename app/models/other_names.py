@@ -10,15 +10,18 @@ class OtherNamesModel(db.Model):
     name = db.Column(db.String(50), nullable=False)
     #person_id = db.Column(db.Integer, db.ForeignKey('person.person_id'), nullable=False)
     person_id = db.Column(db.Integer, nullable=False)
+    country = db.Column(db.String(2))
 
-    def __init__(self, other_name_type, name, person_id):
+    def __init__(self, other_name_type, name, person_id, country=""):
         self.other_name_type = other_name_type
         self.name = name
         self.person_id = person_id
+        self.country = country
 
     def json(self):
         obj = {
             'id': self.other_name_id,
+            'country': self.country,
             'other_name_type': Catalogues.OTHER_NAMES_TYPES[self.other_name_type],
             'name': self.name,
             'person_id': self.person_id

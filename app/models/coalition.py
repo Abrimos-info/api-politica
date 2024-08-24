@@ -10,15 +10,18 @@ class CoalitionModel(db.Model):
     name = db.Column(db.String(100), nullable=False)
     abbreviation = db.Column(db.String(50))
     colors = db.Column(db.JSON)
+    country = db.Column(db.String(2))
 
-    def __init__(self, name, abbreviation, colors):
+    def __init__(self, name, abbreviation, colors, country=""):
         self.name = name
         self.abbreviation = abbreviation
         self.colors = colors
+        self.country = country
 
     def json(self):
         obj = {
             'id': self.coalition_id,
+            'country': self.country,
             'name': {
                 'en_US': self.name,
                 'es_MX': self.name
