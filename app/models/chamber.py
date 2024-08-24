@@ -8,14 +8,17 @@ class ChamberModel(db.Model):
     name = db.Column(db.String(100), nullable=False)
     #area_id = db.Column(db.Integer, db.ForeignKey('area.area_id'), nullable=False)
     area_id = db.Column(db.Integer, nullable=False)
+    country = db.Column(db.String(2))
 
-    def __init__(self, name, area_id):
+    def __init__(self, name, area_id, country=""):
         self.name = name
         self.area_id = area_id
+        self.country = country
 
     def json(self):
         obj = {
             'id': self.chamber_id,
+            'country': self.country,
             'name': {
                 'en_US': self.name
             },

@@ -9,14 +9,17 @@ class PersonProfessionModel(db.Model):
     person_id = db.Column(db.Integer, nullable=False)
     #profession_id = db.Column(db.Integer, db.ForeignKey('profession.profession_id'), nullable=False)
     profession_id = db.Column(db.Integer, nullable=False)
+    country = db.Column(db.String(2))
 
-    def __init__(self, person_id, profession_id):
+    def __init__(self, person_id, profession_id, country=""):
         self.person_id = person_id
         self.profession_id = profession_id
+        self.country = country
 
     def json(self):
         obj = {
             'id': self.person_profession_id,
+            'country': self.country,
             'person_id': self.person_id,
             'profession_id': self.profession_id
         }

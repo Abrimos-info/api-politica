@@ -25,12 +25,12 @@ class MembershipModel(db.Model):
     parent_membership_id = db.Column(db.Integer, nullable=True)
     changed_from_substitute = db.Column(db.Boolean)
     date_changed_from_substitute = db.Column(db.Date)
-
+    country = db.Column(db.String(2))
 
     def __init__(
             self, person_id, role_id, party_id, coalition_id, contest_id, goes_for_coalition,
             membership_type, goes_for_reelection, start_date, end_date, is_substitute,
-            parent_membership_id, changed_from_substitute, date_changed_from_substitute
+            parent_membership_id, changed_from_substitute, date_changed_from_substitute, country=""
         ):
         self.person_id = person_id
         self.role_id = role_id
@@ -46,10 +46,12 @@ class MembershipModel(db.Model):
         self.parent_membership_id = parent_membership_id
         self.changed_from_substitute = changed_from_substitute
         self.date_changed_from_substitute = date_changed_from_substitute
+        self.country = country
 
     def json(self):
         obj = {
             'id': self.membership_id,
+            'country': self.country,
             'person_id': self.person_id,
             'role_id': self.role_id,
             'party_ids': [self.party_id],
