@@ -16,14 +16,16 @@ class ContestModel(db.Model):
     start_date = db.Column(db.Date)
     end_date = db.Column(db.Date)
     election_identifier = db.Column(db.String(3000), nullable=False)
+    country = db.Column(db.String(2))
 
-    def __init__(self, area_id, title, membership_id_winner, start_date, end_date, election_identifier):
+    def __init__(self, area_id, title, membership_id_winner, start_date, end_date, election_identifier, country=""):
         self.area_id = area_id
         self.title = title
         self.membership_id_winner = membership_id_winner
         self.start_date = start_date
         self.end_date = end_date
         self.election_identifier = election_identifier
+        self.country = country
 
     def json(self):
         roles = RoleModel.query.filter_by(contest_id=self.contest_id)
@@ -40,6 +42,7 @@ class ContestModel(db.Model):
 
         obj = {
             'id': self.contest_id,
+            'country': self.country,
             'area_id': self.area_id,
             'title': {
                 'en_US': self.title,

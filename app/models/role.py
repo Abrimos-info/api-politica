@@ -12,17 +12,20 @@ class RoleModel(db.Model):
     chamber_id = db.Column(db.Integer, db.ForeignKey('chamber.chamber_id'), nullable=False)
     #contest_id = db.Column(db.Integer, db.ForeignKey('contest.contest_id'), nullable=True)
     contest_id = db.Column(db.Integer, nullable=True) # Change it to ForeignKey
+    country = db.Column(db.String(2))
 
-    def __init__(self, title, role, area_id, chamber_id, contest_id):
+    def __init__(self, title, role, area_id, chamber_id, contest_id, country=""):
         self.title = title
         self.role = role
         self.area_id = area_id
         self.chamber_id = chamber_id
         self.contest_id = contest_id
+        self.country = country
 
     def json(self):
         obj = {
             'id': self.role_id,
+            'country': self.country,
             'title': {
                 'en_US': self.title
             },

@@ -13,18 +13,21 @@ class PartyModel(db.Model):
     area_id = db.Column(db.Integer, db.ForeignKey('area.area_id'), nullable=True)
     #coalition_id = db.Column(db.Integer, db.ForeignKey('coalition.coalition_id'), nullable=True)
     coalition_id = db.Column(db.Integer, nullable=True)
+    country = db.Column(db.String(2))
 
-    def __init__(self, party_id, name, abbreviation, colors, area_id, coalition_id):
+    def __init__(self, party_id, name, abbreviation, colors, area_id, coalition_id, country=""):
         self.party_id = party_id
         self.name = name
         self.abbreviation = abbreviation
         self.colors = colors
         self.area_id = area_id
         self.coalition_id = coalition_id
+        self.country = country
 
     def json(self):
         obj = {
             'id': self.party_id,
+            'country': self.country,
             'name': {
                 'en_US': self.name,
                 'es_MX': self.name
