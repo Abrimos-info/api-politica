@@ -11,17 +11,22 @@ class UrlModel(db.Model):
     url_type = db.Column(db.Integer, nullable=False)
     owner_type = db.Column(db.Integer, nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
+    country = db.Column(db.String(2))
 
-    def __init__(self, url, description, url_type, owner_type, owner_id):
+
+    def __init__(self, url, description, url_type, owner_type, owner_id, country=""):
         self.url = url
         self.description = description
         self.url_type = url_type
         self.owner_type = owner_type
         self.owner_id = owner_id
+        self.country = country
+
         
     def json(self):
         obj = {
             'id': self.url_id,
+            'country': self.country,
             'url': self.url,
             'description': self.description,
             'url_type': Catalogues.URL_TYPE_FULL_NAMES[self.url_type],

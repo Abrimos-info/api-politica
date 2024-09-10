@@ -6,6 +6,8 @@ from app import api, isOnDev, project_dir, INTERNAL_TOKEN
 from app.models.party import PartyModel as TheModel
 from app.schemas.party import PartySchema as TheSchema
 from app.const import HttpStatus, EmptyValues
+from app import db
+
 
 #   Name of the current item/element
 CURRENT_NAME = 'Party'
@@ -59,25 +61,25 @@ class PartyList(Resource):
                 response = jsonify({'message': 'Not allowed'})
                 response.status_code = HttpStatus.NOT_ALLOWED
                 return response
-            # try:
-            element_json = request.get_json()
-            # print(element_json);
-            # del element_json["party_id"]
-            # print(element_json);
-            element_data = local_schema.load(element_json)
-            element_data.save()
-            response = jsonify(element_data.json())
-            response.status_code = HttpStatus.CREATED
-            # except Exception as e:
-            #     response = jsonify({'message': "party post exception: "+e.__str__()})
-            #     response.status_code = HttpStatus.BAD_REQUEST
+            try:
+                element_json = request.get_json()
+                # print("party",element_json);
+                # del element_json["party_id"]
+                # print(element_json);
+                element_data = local_schema.load(element_json, session=db.session)
+                element_data.save()
+                response = jsonify(element_data.json())
+                response.status_code = HttpStatus.CREATED
+            except Exception as e:
+                response = jsonify({'message': "party post exception: "+e.__str__()})
+                response.status_code = HttpStatus.BAD_REQUEST
             return response
         else:
             response = jsonify({'message': 'Unauthorized'})
             response.status_code = HttpStatus.UNAUTHORIZED
             return response
 
-@local_ns.route('/<int:id>')
+@local_ns.route('/<string:id>')
 class Party(Resource):
     @local_ns.doc('Get the ' + CURRENT_NAME + ' with the specified id',
                   params={

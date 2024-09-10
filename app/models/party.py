@@ -6,7 +6,7 @@ class PartyModel(db.Model):
     __tablename__ = 'party'
     __table_args__ = {'sqlite_autoincrement': True}
 
-    party_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
+    party_id = db.Column(db.String(10), unique=True, primary_key=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     abbreviation = db.Column(db.String(50))
     colors = db.Column(db.JSON)
