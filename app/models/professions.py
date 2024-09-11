@@ -4,12 +4,13 @@ class ProfessionModel(db.Model):
     __tablename__ = 'profession'
     __table_args__ = {'sqlite_autoincrement': True}
 
-    profession_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
+    profession_id = db.Column(db.String(10), unique=True, primary_key=True, nullable=False)
     description = db.Column(db.String(100), nullable=False)
     country = db.Column(db.String(2))
 
-    def __init__(self, description, country=""):
+    def __init__(self, profession_id, description, country=""):
         self.description = description
+        self.profession_id = profession_id
         self.country = country
 
     def json(self):

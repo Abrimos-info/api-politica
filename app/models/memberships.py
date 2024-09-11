@@ -8,7 +8,7 @@ class MembershipModel(db.Model):
     __table_args__ = {'sqlite_autoincrement': True}
 
     membership_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
-    person_id = db.Column(db.Integer, db.ForeignKey('person.person_id'), nullable=False)
+    person_id = db.Column(db.String(10), db.ForeignKey('person.person_id'), nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey('role.role_id'), nullable=False)
     party_id = db.Column(db.Integer, db.ForeignKey('party.party_id'), nullable=False)
     #coalition_id = db.Column(db.Integer, db.ForeignKey('coalition.coalition_id'), nullable=True)

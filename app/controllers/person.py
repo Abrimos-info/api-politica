@@ -84,7 +84,7 @@ class PersonList(Resource):
             response.status_code = HttpStatus.UNAUTHORIZED
             return response
 
-@local_ns.route('/<int:id>')
+@local_ns.route('/<string:id>')
 class Person(Resource):
     @local_ns.doc('Get the ' + CURRENT_NAME + ' with the specified id',
                   params={

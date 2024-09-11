@@ -6,6 +6,7 @@ from app import api, isOnDev, project_dir, INTERNAL_TOKEN
 from app.models.chamber import ChamberModel as TheModel
 from app.schemas.chamber import ChamberSchema as TheSchema
 from app.const import HttpStatus, EmptyValues
+from app import db
 
 #   Name of the current item/element
 CURRENT_NAME = 'Chamber'
@@ -58,7 +59,7 @@ class ChamberList(Resource):
                 return response
             try:
                 element_json = request.get_json()
-                element_data = local_schema.load(element_json)
+                element_data = local_schema.load(element_json, session=db.session)
                 element_data.save()
                 response = jsonify(element_data.json())
                 response.status_code = HttpStatus.CREATED
@@ -72,7 +73,7 @@ class ChamberList(Resource):
             return response
 
 
-@local_ns.route('/<int:id>')
+@local_ns.route('/<string:id>')
 class Chamber(Resource):
     @local_ns.doc('Get the ' + CURRENT_NAME + ' with the specified id',
                   params={

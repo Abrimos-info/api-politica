@@ -5,7 +5,7 @@ class RoleModel(db.Model):
     __tablename__ = 'role'
     __table_args__ = {'sqlite_autoincrement': True}
 
-    role_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
+    role_id = db.Column(db.String(10), unique=True, primary_key=True, nullable=False)
     title = db.Column(db.String(100), nullable=False)
     role = db.Column(db.Integer, nullable=False)
     area_id = db.Column(db.Integer, db.ForeignKey('area.area_id'), nullable=False)
@@ -14,8 +14,9 @@ class RoleModel(db.Model):
     contest_id = db.Column(db.Integer, nullable=True) # Change it to ForeignKey
     country = db.Column(db.String(2))
 
-    def __init__(self, title, role, area_id, chamber_id, contest_id, country=""):
+    def __init__(self, title, role_id, role, area_id, chamber_id, contest_id, country=""):
         self.title = title
+        self.role_id = role_id
         self.role = role
         self.area_id = area_id
         self.chamber_id = chamber_id

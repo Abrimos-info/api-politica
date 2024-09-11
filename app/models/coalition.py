@@ -6,14 +6,15 @@ class CoalitionModel(db.Model):
     __tablename__ = 'coalition'
     __table_args__ = {'sqlite_autoincrement': True}
 
-    coalition_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
+    coalition_id = db.Column(db.String(10), unique=True, primary_key=True, nullable=False)
     name = db.Column(db.String(100), nullable=False)
     abbreviation = db.Column(db.String(50))
     colors = db.Column(db.JSON)
     country = db.Column(db.String(2))
 
-    def __init__(self, name, abbreviation, colors, country=""):
+    def __init__(self, name, abbreviation, colors, coalition_id, country=""):
         self.name = name
+        self.coalition_id = coalition_id
         self.abbreviation = abbreviation
         self.colors = colors
         self.country = country

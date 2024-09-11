@@ -8,7 +8,7 @@ class ContestModel(db.Model):
     __tablename__ = 'contest'
     __table_args__ = {'sqlite_autoincrement': True}
 
-    contest_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
+    contest_id = db.Column(db.String(10), unique=True, primary_key=True, nullable=False)
     area_id = db.Column(db.Integer, db.ForeignKey('area.area_id'), nullable=True)
     title = db.Column(db.String(100), nullable=False)
     #membership_id_winner = db.Column(db.Integer, db.ForeignKey('membership.membership_id'), nullable=True)
@@ -18,8 +18,9 @@ class ContestModel(db.Model):
     election_identifier = db.Column(db.String(3000), nullable=False)
     country = db.Column(db.String(2))
 
-    def __init__(self, area_id, title, membership_id_winner, start_date, end_date, election_identifier, country=""):
+    def __init__(self, area_id, contest_id, title, membership_id_winner, start_date, end_date, election_identifier, country=""):
         self.area_id = area_id
+        self.contest_id = contest_id
         self.title = title
         self.membership_id_winner = membership_id_winner
         self.start_date = start_date

@@ -6,7 +6,7 @@ class PersonProfessionModel(db.Model):
 
     person_profession_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
     #person_id = db.Column(db.Integer, db.ForeignKey('person.person_id'), nullable=False)
-    person_id = db.Column(db.Integer, nullable=False)
+    person_id = db.Column(db.String(10), nullable=False)
     #profession_id = db.Column(db.Integer, db.ForeignKey('profession.profession_id'), nullable=False)
     profession_id = db.Column(db.Integer, nullable=False)
     country = db.Column(db.String(2))

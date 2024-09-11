@@ -5,7 +5,7 @@ class AreaModel(db.Model):
     __tablename__ = 'area'
     __table_args__ = {'sqlite_autoincrement': True}
 
-    area_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
+    area_id = db.Column(db.String(10), unique=True, primary_key=True, nullable=False)
     ocd_id = db.Column(db.String(100), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     country = db.Column(db.String(2), nullable=False)
@@ -16,8 +16,9 @@ class AreaModel(db.Model):
     parent_area_id = db.Column(db.String, nullable=True)
     cvedis = db.Column(db.String, nullable=True)
 
-    def __init__(self, ocd_id, name, country, state, city, district_type, parent_area_id, cvedis=None):
+    def __init__(self, ocd_id, area_id, name, country, state, city, district_type, parent_area_id, cvedis=None):
         self.ocd_id = ocd_id
+        self.area_id = area_id
         self.name = name
         self.country = country
         self.state = state

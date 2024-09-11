@@ -12,7 +12,7 @@ class PersonModel(db.Model):
     __tablename__ = 'person'
     __table_args__ = {'sqlite_autoincrement': True}
 
-    person_id = db.Column(db.Integer, unique=True, primary_key=True, nullable=False, autoincrement=True)
+    person_id = db.Column(db.String(10), unique=True, primary_key=True, nullable=False)
     first_name = db.Column(db.String(50), nullable=False)
     last_name = db.Column(db.String(50), nullable=False)
     full_name = db.Column(db.String(100), nullable=False)

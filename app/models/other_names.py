@@ -9,7 +9,7 @@ class OtherNamesModel(db.Model):
     other_name_type = db.Column(db.Integer, nullable=False) #other_name_type_id
     name = db.Column(db.String(50), nullable=False)
     #person_id = db.Column(db.Integer, db.ForeignKey('person.person_id'), nullable=False)
-    person_id = db.Column(db.Integer, nullable=False)
+    person_id = db.Column(db.String(10), nullable=False)
     country = db.Column(db.String(2))
 
     def __init__(self, other_name_type, name, person_id, country=""):

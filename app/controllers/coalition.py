@@ -6,6 +6,7 @@ from app import api, isOnDev, project_dir, INTERNAL_TOKEN
 from app.models.coalition import CoalitionModel as TheModel
 from app.schemas.coalition import CoalitionSchema as TheSchema
 from app.const import HttpStatus, EmptyValues
+from app import db
 
 #   Name of the current item/element
 CURRENT_NAME = 'Coalition'
@@ -58,7 +59,7 @@ class CoalitionList(Resource):
                 return response
             try:
                 element_json = request.get_json()
-                element_data = local_schema.load(element_json)
+                element_data = local_schema.load(element_json, session=db.session)
                 element_data.save()
                 response = jsonify(element_data.json())
                 response.status_code = HttpStatus.CREATED
@@ -71,7 +72,7 @@ class CoalitionList(Resource):
             response.status_code = HttpStatus.UNAUTHORIZED
             return response
 
-@local_ns.route('/<int:id>')
+@local_ns.route('/<string:id>')
 class Coalition(Resource):
     @local_ns.doc('Get the ' + CURRENT_NAME + ' with the specified id',
                   params={

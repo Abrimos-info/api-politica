@@ -10,7 +10,7 @@ class UrlModel(db.Model):
     description = db.Column(db.String(500))
     url_type = db.Column(db.Integer, nullable=False)
     owner_type = db.Column(db.Integer, nullable=False)
-    owner_id = db.Column(db.Integer, nullable=False)
+    owner_id = db.Column(db.String(10), nullable=False)
     country = db.Column(db.String(2))
 
 
